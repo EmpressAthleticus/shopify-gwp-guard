@@ -1,0 +1,17 @@
+{
+  "name": "shopify-gwp-guard",
+  "private": true,
+  "version": "1.0.0",
+  "license": "UNLICENSED",
+  "workspaces": [
+    "extensions/*"
+  ],
+  "scripts": {
+    "shopify": "shopify",
+    "deploy": "shopify app deploy",
+    "test": "npm test --workspace extensions/gwp-guard"
+  },
+  "devDependencies": {
+    "@shopify/cli": "^3.80.0"
+  }
+}

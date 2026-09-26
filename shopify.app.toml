@@ -1,0 +1,17 @@
+# App config. Fill in client_id after creating the app in the Shopify Dev
+# Dashboard (Apps -> Create app -> App settings -> Client ID).
+client_id = "REPLACE_WITH_YOUR_CLIENT_ID"
+name = "GWP Guard"
+application_url = "https://example.com"
+embedded = false
+
+# Extension-only app: no data access needed, but the empty scope block MUST
+# be present or the install fails with failed_grant_with_invalid_scopes.
+[access_scopes]
+scopes = ""
+
+[auth]
+redirect_urls = []
+
+[webhooks]
+api_version = "2026-04"

@@ -1,0 +1,60 @@
+query CartValidationsGenerateRunInput {
+  buyerJourney {
+    step
+  }
+  shop {
+    metafield(namespace: "custom", key: "gwp_guard") {
+      value
+    }
+  }
+  cart {
+    cost {
+      subtotalAmount {
+        amount
+        currencyCode
+      }
+    }
+    lines {
+      quantity
+      cost {
+        subtotalAmount {
+          amount
+        }
+        amountPerQuantity {
+          amount
+        }
+      }
+      discountAllocations {
+        discountedAmount {
+          amount
+        }
+        discountApplication {
+          targetSelection
+          targetType
+          allocationMethod
+          totalAllocatedAmount {
+            amount
+          }
+          value {
+            __typename
+            ... on PricingPercentageValue {
+              value
+            }
+            ... on MoneyV2 {
+              amount
+            }
+          }
+        }
+      }
+      merchandise {
+        __typename
+        ... on ProductVariant {
+          id
+          product {
+            id
+          }
+        }
+      }
+    }
+  }
+}

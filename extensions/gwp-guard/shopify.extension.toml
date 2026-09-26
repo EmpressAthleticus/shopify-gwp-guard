@@ -1,0 +1,16 @@
+api_version = "2026-04"
+
+[[extensions]]
+name = "GWP Guard"
+handle = "gwp-guard"
+type = "function"
+description = "Blocks checkout when a free gift is in the cart but the post-discount product spend is under the configured minimum."
+
+  [[extensions.targeting]]
+  target = "cart.validations.generate.run"
+  input_query = "src/cart_validations_generate_run.graphql"
+  export = "cart-validations-generate-run"
+
+  [extensions.build]
+  command = ""
+  path = "dist/function.wasm"
