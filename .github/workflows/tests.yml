@@ -1,0 +1,32 @@
+# Runs the gift guard tests on every pull request and on main. The tests are
+# plain Node. They import only Node built-ins and the function file, so there
+# is nothing to install, no network call and no secret. This job cannot reach
+# a store.
+name: Tests
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tests-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+      # No npm ci step. The repo has no lockfile and the tests need no packages.
+      - run: npm test
